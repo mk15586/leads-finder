@@ -19,6 +19,8 @@ type Lead = {
   snippet?: string;
 };
 
+
+
 export default function Home() {
   const [form, setForm] = useState({
     search: "",
