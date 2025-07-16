@@ -81,8 +81,10 @@ export default function Home() {
         setError("No leads found. Try different keywords or filters.");
       }
       setLeads(data.leads || []);
-    } catch (err: any) {
-      setError(err?.message || "Failed to fetch leads.");
+    } catch (err) {
+      let message = "Failed to fetch leads.";
+      if (err instanceof Error) message = err.message;
+      setError(message);
       setLeads([]);
       console.error(err);
     } finally {

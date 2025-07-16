@@ -39,8 +39,8 @@ async function extractLeads(filters: Filters): Promise<Lead[]> {
   const res = await fetch(url);
   const data = await res.json();
 
-  const items = data.items || [];
-  const leads = items.map((item: any, i: number) => {
+  const items = (data.items ?? []) as Array<{ title?: string; link?: string; snippet?: string }>;
+  const leads = items.map((item, i) => {
     const rank: "hot" | "warm" | "cold" =
       i === 0 ? "hot" : i < 3 ? "warm" : "cold";
     return {
